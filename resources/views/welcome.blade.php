@@ -31,7 +31,7 @@
                 <img src="{{ asset('images/Logo.png') }}" alt="Logo">
             </div>
             <div class="text-center flex-grow font-bold text-4xl bg-white text-teal-500 p-2 rounded-xl">
-                FARMACIA HNO. PEDRO
+                Estilos Frans
             </div>
             @if (Route::has('login'))
                 <div class="p-2">
@@ -53,7 +53,7 @@
             <div class="w-3/6 texto-levitante text-teal-600">
                 <div class="flex-grow font-bold text-5xl">¡BIENVENIDO!</div>
                 <div class="py-3">
-                    <p>Sistema de Ventas diseñado para Farmacia Hermano Pedro</p>
+                    <p>Sistema de Ventas diseñado para Estilos Frans</p>
                 </div>
             </div>
         </div>
