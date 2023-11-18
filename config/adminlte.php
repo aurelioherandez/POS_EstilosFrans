@@ -191,7 +191,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-light-warning elevation-5 mt-4',
+    'classes_sidebar' => 'sidebar-light-warning elevation-5',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-warning navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -233,7 +233,7 @@ return [
 
     'right_sidebar' => false,
     'right_sidebar_icon' => 'fas fa-cogs',
-    'right_sidebar_theme' => 'dark',
+    'right_sidebar_theme' => 'light',
     'right_sidebar_slide' => true,
     'right_sidebar_push' => true,
     'right_sidebar_scrollbar_theme' => 'os-theme-light',
@@ -307,36 +307,24 @@ return [
             'icon' => 'fas fa-fw fa-home',
         ],
         [
-            'text'    => 'Módulo de Ventas',
-            'icon'    => 'fas fa-fw fa-store',
-            'submenu' => [
-                [
-                    'text' => 'Nueva Venta',
-                    'url'  => 'ventas/create',
-                    'icon' => 'fas fa-fw fa-cart-plus',
-                ],
-                [
-                    'text' => 'Registro de Ventas',
-                    'url'  => 'ventas',
-                    'icon' => 'fas fa-fw fa-list',
-                ],
-            ],
+            'text' => 'Nueva Venta',
+            'url'  => 'ventas/create',
+            'icon' => 'fas fa-fw fa-cart-plus',
         ],
         [
-            'text'    => 'Módulo de Compras',
-            'icon'    => 'fas fa-fw fa-truck',
-            'submenu' => [                
-                [
-                    'text' => 'Nueva Compra',
-                    'url'  => 'compras/create',
-                    'icon' => 'fas fa-fw fa-receipt',
-                ],
-                [
-                    'text' => 'Registro de Compras',
-                    'url'  => 'compras',
-                    'icon' => 'fas fa-fw fa-list',
-                ],
-            ],
+            'text' => 'Registro de Ventas',
+            'url'  => 'ventas',
+            'icon' => 'fas fa-fw fa-list',
+        ],
+        [
+            'text' => 'Nueva Compra',
+            'url'  => 'compras/create',
+            'icon' => 'fas fa-fw fa-receipt',
+        ],
+        [
+            'text' => 'Registro de Compras',
+            'url'  => 'compras',
+            'icon' => 'fas fa-fw fa-list',
         ],
         // [
         //     'text'    => 'Módulo de Devoluciones',
@@ -360,67 +348,49 @@ return [
         //     'icon' => 'fas fa-fw fa-credit-card',
         // ],
         [
-            'text'    => 'Control de Productos',
-            'icon'    => 'fas fa-fw fa-boxes',
-            'submenu' => [
-                [
-                    'text' => 'Lista de Productos',
-                    'url'  => 'productos',
-                    'icon' => 'fas fa-fw fa-list',
-                ],
-                [
-                    'text' => 'Marcas',
-                    'url'  => 'marcas',
-                    'icon' => 'fas fa-fw fa-bookmark',
-                ],
-                [
-                    'text' => 'Categoría',
-                    'url'  => 'categorias',
-                    'icon' => 'fas fa-fw fa-sitemap',
-                ],
-                [
-                    'text' => 'tallas',
-                    'url'  => 'tallas',
-                    'icon' => 'fas fa-fw fa-tags',
-                ],
-                [
-                    'text' => 'Presentaciones',
-                    'url'  => 'presentaciones',
-                    'icon' => 'fas fa-fw fa-tags',
-                ],
-            ],
+            'text' => 'Lista de Productos',
+            'url'  => 'productos',
+            'icon' => 'fas fa-fw fa-list',
         ],
         [
-            'text'    => 'Personas',
-            'icon'    => 'fas fa-fw fa-users',
-            'submenu' => [                
-                [
-                    'text' => 'Proveedores',
-                    'url'  => 'proveedores',
-                    'icon' => 'fas fa-fw fa-user-tie',
-                ],
-                [
-                    'text' => 'Clientes',
-                    'url'  => 'clientes',
-                    'icon' => 'fas fa-fw fa-users',
-                ],
-            ],
+            'text' => 'Marcas',
+            'url'  => 'marcas',
+            'icon' => 'fas fa-fw fa-bookmark',
         ],
         [
-            'text'    => 'Seguridad',
-            'icon'    => 'fas fa-fw fa-cogs',
-            'submenu' => [
-                [
-                    'text' => 'Usuarios',
-                    'url'  => 'users',
-                    'icon' => 'fas fa-fw fa-users',
-                ],
-                [
-                    'text' => 'Roles',
-                    'url'  => 'roles',
-                    'icon' => 'fas fa-fw fa-address-book',
-                ],
-            ],
+            'text' => 'Categoría',
+            'url'  => 'categorias',
+            'icon' => 'fas fa-fw fa-sitemap',
+        ],
+        [
+            'text' => 'tallas',
+            'url'  => 'tallas',
+            'icon' => 'fas fa-fw fa-tags',
+        ],
+        [
+            'text' => 'Presentaciones',
+            'url'  => 'presentaciones',
+            'icon' => 'fas fa-fw fa-tags',
+        ],
+        [
+            'text' => 'Proveedores',
+            'url'  => 'proveedores',
+            'icon' => 'fas fa-fw fa-user-tie',
+        ],
+        [
+            'text' => 'Clientes',
+            'url'  => 'clientes',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Usuarios',
+            'url'  => 'users',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Roles',
+            'url'  => 'roles',
+            'icon' => 'fas fa-fw fa-address-book',
         ],
     ],
 
