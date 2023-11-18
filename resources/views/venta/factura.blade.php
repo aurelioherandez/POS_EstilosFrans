@@ -40,7 +40,7 @@
             font-weight: bold;
         }
     </style>
-    <title>Farmacia Hno Pedro | Factura</title>
+    <title>Estilos Frans | Factura</title>
 </head>
 
 <body>
@@ -52,7 +52,7 @@
     <main>
         <div>
             <p>
-                FARMACIA HERMANO PEDRO
+                Estilos Frans
                 <br>
                 Coatepeque
                 <br>

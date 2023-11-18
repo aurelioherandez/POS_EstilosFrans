@@ -46,7 +46,7 @@
             gap: 0;
         }
     </style>
-    <title>Farmacia Hno Pedro | Reporte</title>
+    <title>Estilos Frans | Reporte</title>
 </head>
 
 <body>
