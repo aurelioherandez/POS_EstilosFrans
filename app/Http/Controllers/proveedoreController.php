@@ -7,18 +7,20 @@ use App\Http\Requests\UpdateProveedoreRequest;
 use App\Models\Documento;
 use App\Models\Persona;
 use App\Models\Proveedore;
+use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
 class proveedoreController extends Controller
 {
-    // function __construct()
-    // {
-    //     $this->middleware('permission:ver-proveedore|crear-proveedore|editar-proveedore|eliminar-proveedore', ['only' => ['index']]);
-    //     $this->middleware('permission:crear-proveedore', ['only' => ['create', 'store']]);
-    //     $this->middleware('permission:editar-proveedore', ['only' => ['edit', 'update']]);
-    //     $this->middleware('permission:eliminar-proveedore', ['only' => ['destroy']]);
-    // }
+    function __construct()
+    {
+        $this->middleware('permission:ver-proveedore|crear-proveedore|editar-proveedore|eliminar-proveedore', ['only' => ['index']]);
+        $this->middleware('permission:crear-proveedore', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-proveedore', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:eliminar-proveedore', ['only' => ['destroy']]);
+    }
+    
     /**
      * Display a listing of the resource.
      */
@@ -40,11 +42,20 @@ class proveedoreController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePersonaRequest $request)
+    public function store(Request $request)
     {
+        $request->validate([
+            'razon_social' => 'required|max:80',
+            'direccion' => 'required|max:80',
+            'tipo_persona' => 'required|string',
+            'documento_id' => 'required|integer',
+            'numero_documento' => 'required|max:20|unique:personas,numero_documento',
+            'nit' => 'required|max:10|unique:personas,nit'
+        ]);
+
         try {
             DB::beginTransaction();
-            $persona = Persona::create($request->validated());
+            $persona = Persona::create($request->all());
             $persona->proveedore()->create([
                 'persona_id' => $persona->id
             ]);
@@ -78,21 +89,29 @@ class proveedoreController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProveedoreRequest $request, Proveedore $proveedore)
+    public function update(Request $request, Proveedore $proveedore)
     {
-        try{
+        $request->validate([
+            'razon_social' => 'required|max:80',
+            'direccion' => 'required|max:80',
+            'documento_id' => 'required|integer|exists:documentos,id',
+            'numero_documento' => 'required|max:20|unique:personas,numero_documento,' . $proveedore->persona->id,
+            'nit' => 'required|max:10|unique:personas,nit,' . $proveedore->persona->id
+        ]);
+
+        try {
             DB::beginTransaction();
 
-            Persona::where('id',$proveedore->persona->id)
-            ->update($request->validated());
+            Persona::where('id', $proveedore->persona->id)
+                ->update($request->validated());
 
             DB::commit();
-        }catch(Exception $e){
+        } catch (Exception $e) {
             dd($e);
             DB::rollBack();
         }
 
-        return redirect()->route('proveedores.index')->with('success','Proveedor editado');
+        return redirect()->route('proveedores.index')->with('success', 'Proveedor editado');
     }
 
     /**

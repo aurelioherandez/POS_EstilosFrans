@@ -14,13 +14,14 @@ use Spatie\Permission\Models\Role;
 
 class userController extends Controller
 {
-    // function __construct()
-    // {
-    //     $this->middleware('permission:ver-user|crear-user|editar-user|eliminar-user', ['only' => ['index']]);
-    //     $this->middleware('permission:crear-user', ['only' => ['create', 'store']]);
-    //     $this->middleware('permission:editar-user', ['only' => ['edit', 'update']]);
-    //     $this->middleware('permission:eliminar-user', ['only' => ['destroy']]);
-    // }
+    function __construct()
+    {
+        $this->middleware('permission:ver-user|crear-user|editar-user|eliminar-user', ['only' => ['index']]);
+        $this->middleware('permission:crear-user', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-user', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:eliminar-user', ['only' => ['destroy']]);
+    }
+    
     /**
      * Display a listing of the resource.
      */
@@ -42,8 +43,15 @@ class userController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
+    public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|min:8|same:password_confirm',
+            'role' => 'required|exists:roles,name'
+        ]);
+
         try {
             DB::beginTransaction();
 
@@ -86,8 +94,16 @@ class userController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,email,'.$user->id,
+            'password' => 'required|min:8|same:password_confirm',
+            'role' => 'required|exists:roles,name'
+        ]);
+
         try {
             DB::beginTransaction();
 

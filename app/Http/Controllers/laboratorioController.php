@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\DB;
 
 class laboratorioController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware('permission:ver-laboratorio|crear-laboratorio|editar-laboratorio|eliminar-laboratorio', ['only' => ['index']]);
+        $this->middleware('permission:crear-laboratorio', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-laboratorio', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:eliminar-laboratorio', ['only' => ['destroy']]);
+    }
+    
     /**
      * Display a listing of the resource.
      */

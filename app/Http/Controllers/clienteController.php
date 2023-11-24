@@ -7,18 +7,19 @@ use App\Http\Requests\UpdateClienteRequest;
 use App\Models\Cliente;
 use App\Models\Documento;
 use App\Models\Persona;
+use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
 class clienteController extends Controller
 {
-    // function __construct()
-    // {
-    //     $this->middleware('permission:ver-cliente|crear-cliente|editar-cliente|eliminar-cliente', ['only' => ['index']]);
-    //     $this->middleware('permission:crear-cliente', ['only' => ['create', 'store']]);
-    //     $this->middleware('permission:editar-cliente', ['only' => ['edit', 'update']]);
-    //     $this->middleware('permission:eliminar-cliente', ['only' => ['destroy']]);
-    // }
+    function __construct()
+    {
+        $this->middleware('permission:ver-cliente|crear-cliente|editar-cliente|eliminar-cliente', ['only' => ['index']]);
+        $this->middleware('permission:crear-cliente', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-cliente', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:eliminar-cliente', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -40,11 +41,20 @@ class clienteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePersonaRequest $request)
+    public function store(Request $request)
     {
+        $request->validate([
+            'razon_social' => 'required|max:80',
+            'direccion' => 'required|max:80',
+            'tipo_persona' => 'required|string',
+            'documento_id' => 'required|integer',
+            'numero_documento' => 'required|max:20|unique:personas,numero_documento',
+            'nit' => 'required|max:10|unique:personas,nit'
+        ]);
+
         try {
             DB::beginTransaction();
-            $persona = Persona::create($request->validated());
+            $persona = Persona::create($request->all());
             $persona->cliente()->create([
                 'persona_id' => $persona->id
             ]);
@@ -78,8 +88,16 @@ class clienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateClienteRequest $request, Cliente $cliente)
+    public function update(Request $request, Cliente $cliente)
     {
+        $request->validate([
+            'razon_social' => 'required|max:80',
+            'direccion' => 'required|max:80',
+            'documento_id' => 'required|integer|exists:documentos,id',
+            'numero_documento' => 'required|max:20|unique:personas,numero_documento,' . $cliente->persona->id,
+            'nit' => 'required|max:10|unique:personas,nit,' . $cliente->persona->id
+        ]);
+
         try {
             DB::beginTransaction();
 
