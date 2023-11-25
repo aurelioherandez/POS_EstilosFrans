@@ -287,7 +287,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#producto_id').change(mostrarValores);
+            // $('#producto_id').change(mostrarValores);
 
             $('#btn_agregar').click(function() {
                 agregarProducto();
@@ -302,6 +302,16 @@
             $('#impuesto').val(impuesto + '%');
         });
 
+        function disableButtons() {
+            if (total == 0) {
+                $('#guardar').hide();
+                $('#cancelar').hide();
+            } else {
+                $('#guardar').show();
+                $('#cancelar').show();
+            }
+        }
+
         //Variables
         let subtotal = [];
         let sumas = 0;
@@ -310,12 +320,6 @@
         let impuesto = 12; // Asegúrate de que este es el valor correcto para el impuesto
         let cont = 0;
 
-        function mostrarValores() {
-            let dataProducto = document.getElementById('producto_id').value.split('-');
-            $('#stock').val(dataProducto[1]);
-            $('#precio_venta').val(dataProducto[2]);
-        }
-
         function agregarProducto() {
             // Obtener valores de los campos
             let idProducto = $('#producto_id').val();
@@ -323,11 +327,6 @@
             let cantidad = $('#cantidad').val();
             let precioCompra = $('#precio_compra').val();
             let precioVenta = $('#precio_venta').val();
-            let descuento = $('#descuento').val(); // Asegúrate de que este es el id correcto para el campo de descuento
-
-            if (descuento == '') {
-                descuento = 0;
-            }
 
             // Validaciones 
             // 1. Para que los campos no esten vacíos
