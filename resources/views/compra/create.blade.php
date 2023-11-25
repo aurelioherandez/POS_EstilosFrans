@@ -70,7 +70,7 @@
                                                 <!-----botón para agregar--->
                                                 <div class="col-12 mb-4 mt-2 text-end">
                                                     <button id="btn_agregar"
-                                                        class="bg-amber-500 hover:bg-amber-600 px-3 py-2 rounded-md text-white font-bold">
+                                                        class="bg-amber-500 hover:bg-amber-600 px-3 py-2 rounded-md text-white font-bold"
                                                         type="button">Agregar</button>
                                                 </div>
 
@@ -126,7 +126,7 @@
                                                 <!--Boton para cancelar compra-->
                                                 <div class="col-12 mt-2">
                                                     <button id="cancelar" type="button"
-                                                        class="bg-red-500 hover:bg-red-600 px-3 py-2 rounded-md text-white font-bold">
+                                                        class="bg-red-500 hover:bg-red-600 px-3 py-2 rounded-md text-white font-bold"
                                                         data-toggle="modal" data-target="#exampleModal">
                                                         Cancelar compra
                                                     </button>
@@ -147,7 +147,7 @@
                                                 <div class="col-12 mb-2">
                                                     <label for="proveedore_id" class="form-label">Proveedor:</label>
                                                     <select name="proveedore_id" id="proveedore_id"
-                                                        class="form-control selectpicker show-tick" data-live-search="true"
+                                                        class="form-control show-tick" data-live-search="true"
                                                         title="Selecciona" data-size='2'>
                                                         @foreach ($proveedores as $item)
                                                             <option value="{{ $item->id }}">
@@ -164,7 +164,7 @@
                                                 <div class="col-12 mb-2">
                                                     <label for="comprobante_id" class="form-label">Comprobante:</label>
                                                     <select name="comprobante_id" id="comprobante_id"
-                                                        class="form-control selectpicker" title="Selecciona">
+                                                        class="form-control" title="Selecciona">
                                                         @foreach ($comprobantes as $item)
                                                             <option value="{{ $item->id }}">
                                                                 {{ $item->tipo_comprobante }}</option>

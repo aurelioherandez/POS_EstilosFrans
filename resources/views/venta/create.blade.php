@@ -36,13 +36,11 @@
                                         <div class="p-3 border border-3 border-warning">
                                             <div class="row">
                                                 <!-----Producto---->
-                                                <div class="col-md-12">
-                                                    <select name="producto_id" id="producto_id"
-                                                        class="form-control selectpicker" data-live-search="true"
-                                                        data-size="1" title="Busque un producto aquí">
+                                                <div class="col-12 mb-4">
+                                                    <select name="producto_id" id="producto_id" class="form-control"
+                                                        title="Busque un producto aquí">
                                                         @foreach ($productos as $item)
-                                                            <option
-                                                                value="{{ $item->id }}-{{ $item->stock }}-{{ $item->precio_venta }}">
+                                                            <option value="{{ $item->id }}">
                                                                 {{ $item->codigo . ' ' . $item->nombre }}</option>
                                                         @endforeach
                                                     </select>
@@ -77,7 +75,8 @@
 
                                                 <!-----botón para agregar--->
                                                 <div class="col-12 py-2 text-end">
-                                                    <button id="btn_agregar" class="bg-amber-500 hover:bg-amber-600 px-3 py-2 rounded-md text-white font-bold">
+                                                    <button id="btn_agregar"
+                                                        class="bg-amber-500 hover:bg-amber-600 px-3 py-2 rounded-md text-white font-bold">
                                                         type="button">Agregar</button>
                                                 </div>
 
@@ -132,7 +131,8 @@
 
                                                 <!--Boton para cancelar venta-->
                                                 <div class="col-12">
-                                                    <button id="cancelar" type="button" class="bg-red-500 hover:bg-red-600 px-3 py-2 rounded-md text-white font-bold">
+                                                    <button id="cancelar" type="button"
+                                                        class="bg-red-500 hover:bg-red-600 px-3 py-2 rounded-md text-white font-bold">
                                                         data-toggle="modal" data-target="#exampleModal">
                                                         Cancelar venta
                                                     </button>
@@ -152,8 +152,7 @@
                                                 <!--Proveedor-->
                                                 <div class="col-12">
                                                     <label for="cliente_id" class="form-label">Cliente:</label>
-                                                    <select name="cliente_id" id="cliente_id"
-                                                        class="form-control selectpicker show-tick"
+                                                    <select name="cliente_id" id="cliente_id" class="form-control"
                                                         data-live-search="true" title="Selecciona" data-size='5'>
                                                         @foreach ($clientes as $item)
                                                             <option value="{{ $item->id }}">
@@ -170,7 +169,7 @@
                                                 <div class="col-12">
                                                     <label for="comprobante_id" class="form-label">Comprobante:</label>
                                                     <select name="comprobante_id" id="comprobante_id"
-                                                        class="form-control selectpicker" title="Selecciona">
+                                                        class="form-control" title="Selecciona">
                                                         @foreach ($comprobantes as $item)
                                                             <option value="{{ $item->id }}">
                                                                 {{ $item->tipo_comprobante }}</option>
@@ -222,7 +221,8 @@
 
                                                 <!--Botones--->
                                                 <div class="col-12 mt-4 text-center">
-                                                    <button type="submit" class="btn btn-warning" id="guardar">Realizar
+                                                    <button type="submit" class="btn btn-warning"
+                                                        id="guardar">Realizar
                                                         venta</button>
                                                 </div>
 
@@ -265,7 +265,7 @@
 @stop
 
 @push('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -282,7 +282,7 @@
 @endpush
 
 @push('js')
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -299,7 +299,7 @@
 
             // Calcula el resultado y lo muestra en input3
             var result = value2 - value1;
-            
+
             document.getElementById("cambio").value = Number(result.toFixed(2));
         }
     </script>
@@ -328,14 +328,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
-    
 
-    
+
     <script>
         $(document).ready(function() {
-
             $('#producto_id').change(mostrarValores);
-
 
             $('#btn_agregar').click(function() {
                 agregarProducto();
@@ -398,7 +395,8 @@
                         //Crear la fila
                         let fila = '<tr id="fila' + cont + '">' +
                             '<th>' + (cont + 1) + '</th>' +
-                            '<td><input type="hidden" name="arrayidproducto[]" value="' + idProducto + '">' + nameProducto +
+                            '<td><input type="hidden" name="arrayidproducto[]" value="' + idProducto + '">' +
+                            nameProducto +
                             '</td>' +
                             '<td><input type="hidden" name="arraycantidad[]" value="' + cantidad + '">' + cantidad +
                             '</td>' +
@@ -408,7 +406,7 @@
                             '</td>' +
                             '<td>' + subtotal[cont] + '</td>' +
                             '<td><button class="btn btn-danger" type="button" onClick="eliminarProducto(' + cont +
-                            ')">borrar</button></td>' +
+                            ')"><i class="fas fa-trash"></i></button></td>' +
                             '</tr>';
 
                         //Acciones después de añadir la fila
@@ -428,11 +426,9 @@
                     }
 
                 } else {
-                    showModal('Valores incorrectos');
+                    showModal('Le faltan campos por llenar');
                 }
 
-            } else {
-                showModal('Le faltan campos por llenar');
             }
 
         }
@@ -457,7 +453,7 @@
         }
 
         function cancelarVenta() {
-            //Elimar el tbody de la tabla
+            //Eliminar el tbody de la tabla
             $('#tabla_detalle tbody').empty();
 
             //Añadir una nueva fila a la tabla
@@ -502,7 +498,7 @@
 
         function limpiarCampos() {
             let select = $('#producto_id');
-            select.selectpicker('val', '');
+            select.val('');
             $('#cantidad').val('');
             $('#precio_venta').val('');
             $('#descuento').val('');
@@ -540,7 +536,5 @@
             num = num.toString().split('e');
             return signo * (num[0] + 'e' + (num[1] ? (+num[1] - decimales) : -decimales));
         }
-        //Fuente: https://es.stackoverflow.com/questions/48958/redondear-a-dos-decimales-cuando-sea-necesario
     </script>
-
 @endpush
