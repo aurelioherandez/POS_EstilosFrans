@@ -39,8 +39,9 @@
                                                 <div class="col-12 mb-4">
                                                     <select name="producto_id" id="producto_id" class="form-control"
                                                         title="Busque un producto aquí">
+                                                        <option value=""></option>
                                                         @foreach ($productos as $item)
-                                                            <option value="{{ $item->id }}">
+                                                            <option value="{{ $item->id }}-{{ $item->stock }}-{{ $item->precio_venta }}">
                                                                 {{ $item->codigo . ' ' . $item->nombre }}</option>
                                                         @endforeach
                                                     </select>
@@ -76,7 +77,7 @@
                                                 <!-----botón para agregar--->
                                                 <div class="col-12 py-2 text-end">
                                                     <button id="btn_agregar"
-                                                        class="bg-amber-500 hover:bg-amber-600 px-3 py-2 rounded-md text-white font-bold">
+                                                        class="bg-amber-500 hover:bg-amber-600 px-3 py-2 rounded-md text-white font-bold"
                                                         type="button">Agregar</button>
                                                 </div>
 
@@ -132,7 +133,7 @@
                                                 <!--Boton para cancelar venta-->
                                                 <div class="col-12">
                                                     <button id="cancelar" type="button"
-                                                        class="bg-red-500 hover:bg-red-600 px-3 py-2 rounded-md text-white font-bold">
+                                                        class="bg-red-500 hover:bg-red-600 px-3 py-2 rounded-md text-white font-bold"
                                                         data-toggle="modal" data-target="#exampleModal">
                                                         Cancelar venta
                                                     </button>
@@ -303,6 +304,7 @@
             document.getElementById("cambio").value = Number(result.toFixed(2));
         }
     </script>
+
     <script>
         var lastValue = ""; // Almacena el último valor conocido
 
@@ -322,6 +324,7 @@
         // Comienza a revisar cambios
         checkForChanges();
     </script>
+
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -348,17 +351,15 @@
         });
 
         //Variables
-        let cont = 0;
         let subtotal = [];
         let sumas = 0;
         let iva = 0;
         let total = 0;
-
-        //Constantes
-        const impuesto = 12;
+        let impuesto = 12; // Asegúrate de que este es el valor correcto para el impuesto
+        let cont = 0;
 
         function mostrarValores() {
-            let dataProducto = document.getElementById('producto_id').value.split('-');
+            let dataProducto = document.getElementById('producto_id').value.split(' ');
             $('#stock').val(dataProducto[1]);
             $('#precio_venta').val(dataProducto[2]);
         }
