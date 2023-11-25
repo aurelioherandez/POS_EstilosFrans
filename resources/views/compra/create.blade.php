@@ -325,15 +325,19 @@
             let cantidad = $('#cantidad').val();
             let precioCompra = $('#precio_compra').val();
             let precioVenta = $('#precio_venta').val();
+            let descuento = $('#descuento').val(); // Asegúrate de que este es el id correcto para el campo de descuento
+
+            if (descuento == '') {
+                descuento = 0;
+            }
 
             //Validaciones 
             //1.Para que los campos no esten vacíos
-            // if (nameProducto != '' && nameProducto != undefined && cantidad != '' && precioCompra != '' && precioVenta !=
-            //     '') {
+            // if (idProducto != '' && cantidad != '' && precioCompra != '' && precioVenta != '') {
 
             //2. Para que los valores ingresados sean los correctos
-            if (parseInt(cantidad) > 0 && (cantidad % 1 == 0) && parseFloat(precioCompra) > 0 && parseFloat(
-                    precioVenta) > 0) {
+            if (parseInt(cantidad) > 0 && (cantidad % 1 == 0) && parseFloat(precioCompra) > 0 && parseFloat(precioVenta) >
+                0) {
 
                 //3. Para que el precio de compra sea menor que el precio de venta
                 if (parseFloat(precioVenta) > parseFloat(precioCompra)) {
@@ -383,6 +387,7 @@
             //     showModal('Le faltan campos por llenar');
             // }
         }
+
 
         function cancelarCompra() {
             //Eliminar el tbody de la tabla
