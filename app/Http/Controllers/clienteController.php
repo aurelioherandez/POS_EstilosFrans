@@ -102,7 +102,7 @@ class clienteController extends Controller
             DB::beginTransaction();
 
             Persona::where('id', $cliente->persona->id)
-                ->update($request->validated());
+                ->update($request->all());
 
             DB::commit();
         } catch (Exception $e) {
