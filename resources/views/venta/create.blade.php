@@ -365,6 +365,11 @@
             $('#precio_venta').val(dataProducto[2]);
         }
 
+        let productoData = idProducto.split('-');
+        let id = productoData[0];
+        let stock = productoData[1];
+        let precio_venta = productoData[2];
+
 
         function agregarProducto() {
             //Obtener valores de los campos
@@ -397,7 +402,7 @@
                         //Crear la fila
                         let fila = '<tr id="fila' + cont + '">' +
                             '<th>' + (cont + 1) + '</th>' +
-                            '<td><input type="hidden" name="arrayidproducto[]" value="' + idProducto + '">' +
+                            '<td><input type="hidden" name="arrayidproducto[]" value="' + id + '">' +
                             nameProducto +
                             '</td>' +
                             '<td><input type="hidden" name="arraycantidad[]" value="' + cantidad + '">' + cantidad +
