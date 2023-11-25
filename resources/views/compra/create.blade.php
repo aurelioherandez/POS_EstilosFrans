@@ -342,7 +342,7 @@
                 //3. Para que el precio de compra sea menor que el precio de venta
                 if (parseFloat(precioVenta) > parseFloat(precioCompra)) {
                     //Calcular valores
-                    subtotal[cont] = round(cantidad * precioCompra - descuento);
+                    subtotal[cont] = round(cantidad * precioCompra);
                     sumas += subtotal[cont];
                     iva = round(sumas / 100 * impuesto);
                     total = round(sumas + iva);
