@@ -374,6 +374,9 @@
         function agregarProducto() {
             //Obtener valores de los campos
             let idProducto = $('#producto_id').val();
+            let productoData = idProducto.split('-');
+            let id = productoData[0]; // Aquí obtienes solo el ID del producto
+
             let nameProducto = $('#producto_id option:selected').text();
             let cantidad = $('#cantidad').val();
             let precioVenta = $('#precio_venta').val();
@@ -403,6 +406,7 @@
                         let fila = '<tr id="fila' + cont + '">' +
                             '<th>' + (cont + 1) + '</th>' +
                             '<td><input type="hidden" name="arrayidproducto[]" value="' + id + '">' +
+                            // Aquí usas solo el ID
                             nameProducto +
                             '</td>' +
                             '<td><input type="hidden" name="arraycantidad[]" value="' + cantidad + '">' + cantidad +
