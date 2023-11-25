@@ -56,8 +56,9 @@
                                     <div class="col-md-6">
                                         <label for="marca_id" class="form-label">Marca:</label>
                                         <select data-size="4" title="Seleccione una marca" data-live-search="true"
-                                            name="marca_id" id="marca_id" class="form-control selectpicker show-tick">
+                                            name="marca_id" id="marca_id" class="form-control">
                                             @foreach ($marcas as $item)
+                                                <option value=""></option>
                                                 <option value="{{ $item->id }}"
                                                     {{ old('marca_id') == $item->id ? 'selected' : '' }}>
                                                     {{ $item->nombre }}
@@ -71,9 +72,9 @@
                                     <div class="col-md-6">
                                         <label for="presentacione_id" class="form-label">Presentación:</label>
                                         <select data-size="4" title="Seleccione una presentación" data-live-search="true"
-                                            name="presentacione_id" id="presentacione_id"
-                                            class="form-control selectpicker show-tick">
+                                            name="presentacione_id" id="presentacione_id" class="form-control">
                                             @foreach ($presentaciones as $item)
+                                                <option value=""></option>
                                                 <option value="{{ $item->id }}"
                                                     {{ old('presentacione_id') == $item->id ? 'selected' : '' }}>
                                                     {{ $item->nombre }}</option>
@@ -91,9 +92,9 @@
                                     <div class="col-md-6">
                                         <label for="categorias" class="form-label">Categorías:</label>
                                         <select data-size="4" title="Seleccione las categorías" data-live-search="true"
-                                            name="categorias[]" id="categorias" class="form-control selectpicker show-tick"
-                                            multiple>
+                                            name="categorias[]" id="categorias" class="form-control" multiple>
                                             @foreach ($categorias as $item)
+                                                <option value=""></option>
                                                 <option value="{{ $item->id }}"
                                                     {{ in_array($item->id, old('categorias', [])) ? 'selected' : '' }}>
                                                     {{ $item->nombre }}</option>
@@ -106,9 +107,9 @@
                                     <div class="col-md-6">
                                         <label for="laboratorio_id" class="form-label">Talla:</label>
                                         <select data-size="4" title="Seleccione una talla" data-live-search="true"
-                                            name="laboratorio_id" id="laboratorio_id"
-                                            class="form-control selectpicker show-tick">
+                                            name="laboratorio_id" id="laboratorio_id" class="form-control">
                                             @foreach ($laboratorios as $item)
+                                                <option value=""></option>
                                                 <option value="{{ $item->id }}"
                                                     {{ old('laboratorio_id') == $item->id ? 'selected' : '' }}>
                                                     {{ $item->nombre }}</option>
@@ -143,7 +144,7 @@
 @stop
 
 @push('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -161,7 +162,7 @@
 @endpush
 
 @section('js')
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
