@@ -41,7 +41,8 @@
                                                         title="Busque un producto aquí">
                                                         <option value=""></option>
                                                         @foreach ($productos as $item)
-                                                            <option value="{{ $item->id }}-{{ $item->stock }}-{{ $item->precio_venta }}">
+                                                            <option
+                                                                value="{{ $item->id }}-{{ $item->stock }}-{{ $item->precio_venta }}">
                                                                 {{ $item->codigo . ' ' . $item->nombre }}</option>
                                                         @endforeach
                                                     </select>
@@ -359,10 +360,11 @@
         let cont = 0;
 
         function mostrarValores() {
-            let dataProducto = document.getElementById('producto_id').value.split(' ');
+            let dataProducto = document.getElementById('producto_id').value.split('-');
             $('#stock').val(dataProducto[1]);
             $('#precio_venta').val(dataProducto[2]);
         }
+
 
         function agregarProducto() {
             //Obtener valores de los campos
@@ -379,57 +381,58 @@
 
             //Validaciones 
             //1.Para que los campos no esten vacíos
-            // if (idProducto != '' && cantidad != '') {
+            if (idProducto != '' && cantidad != '' && precioVenta != '') {
 
-            //2. Para que los valores ingresados sean los correctos
-            if (parseInt(cantidad) > 0 && (cantidad % 1 == 0) && parseFloat(descuento) >= 0) {
+                //2. Para que los valores ingresados sean los correctos
+                if (parseInt(cantidad) > 0 && (cantidad % 1 == 0) && parseFloat(descuento) >= 0) {
 
-                //3. Para que la cantidad no supere el stock
-                if (parseInt(cantidad) <= parseInt(stock)) {
-                    //Calcular valores
-                    subtotal[cont] = round(cantidad * precioVenta - descuento);
-                    sumas += subtotal[cont];
-                    iva = round(sumas / 100 * impuesto);
-                    total = round(sumas + iva);
+                    //3. Para que la cantidad no supere el stock
+                    if (parseInt(cantidad) <= parseInt(stock)) {
+                        //Calcular valores
+                        subtotal[cont] = round(cantidad * precioVenta - descuento);
+                        sumas += subtotal[cont];
+                        iva = round(sumas / 100 * impuesto);
+                        total = round(sumas + iva);
 
-                    //Crear la fila
-                    let fila = '<tr id="fila' + cont + '">' +
-                        '<th>' + (cont + 1) + '</th>' +
-                        '<td><input type="hidden" name="arrayidproducto[]" value="' + idProducto + '">' +
-                        nameProducto +
-                        '</td>' +
-                        '<td><input type="hidden" name="arraycantidad[]" value="' + cantidad + '">' + cantidad +
-                        '</td>' +
-                        '<td><input type="hidden" name="arrayprecioventa[]" value="' + precioVenta + '">' +
-                        precioVenta + '</td>' +
-                        '<td><input type="hidden" name="arraydescuento[]" value="' + descuento + '">' + descuento +
-                        '</td>' +
-                        '<td>' + subtotal[cont] + '</td>' +
-                        '<td><button class="btn btn-danger" type="button" onClick="eliminarProducto(' + cont +
-                        ')"><i class="fas fa-trash"></i></button></td>' +
-                        '</tr>';
+                        //Crear la fila
+                        let fila = '<tr id="fila' + cont + '">' +
+                            '<th>' + (cont + 1) + '</th>' +
+                            '<td><input type="hidden" name="arrayidproducto[]" value="' + idProducto + '">' +
+                            nameProducto +
+                            '</td>' +
+                            '<td><input type="hidden" name="arraycantidad[]" value="' + cantidad + '">' + cantidad +
+                            '</td>' +
+                            '<td><input type="hidden" name="arrayprecioventa[]" value="' + precioVenta + '">' +
+                            precioVenta + '</td>' +
+                            '<td><input type="hidden" name="arraydescuento[]" value="' + descuento + '">' + descuento +
+                            '</td>' +
+                            '<td>' + subtotal[cont] + '</td>' +
+                            '<td><button class="btn btn-danger" type="button" onClick="eliminarProducto(' + cont +
+                            ')"><i class="fas fa-trash"></i></button></td>' +
+                            '</tr>';
 
-                    //Acciones después de añadir la fila
-                    $('#tabla_detalle').append(fila);
-                    limpiarCampos();
-                    cont++;
-                    disableButtons();
+                        //Acciones después de añadir la fila
+                        $('#tabla_detalle').append(fila);
+                        limpiarCampos();
+                        cont++;
+                        disableButtons();
 
-                    //Mostrar los campos calculados
-                    $('#sumas').html(sumas);
-                    $('#iva').html(iva);
-                    $('#total').html(total);
-                    $('#impuesto').val(iva);
-                    $('#inputTotal').val(total);
+                        //Mostrar los campos calculados
+                        $('#sumas').html(sumas);
+                        $('#iva').html(iva);
+                        $('#total').html(total);
+                        $('#impuesto').val(iva);
+                        $('#inputTotal').val(total);
+                    } else {
+                        showModal('Cantidad incorrecta');
+                    }
+
                 } else {
-                    showModal('Cantidad incorrecta');
+                    showModal('Los valores ingresados no son correctos');
                 }
-
-            // } else {
-            //     showModal('Le faltan campos por llenar');
-            // }
+            } else {
+                showModal('Le faltan campos por llenar');
             }
-
         }
 
 
