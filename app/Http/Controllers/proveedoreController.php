@@ -20,7 +20,7 @@ class proveedoreController extends Controller
         $this->middleware('permission:editar-proveedore', ['only' => ['edit', 'update']]);
         $this->middleware('permission:eliminar-proveedore', ['only' => ['destroy']]);
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -36,7 +36,7 @@ class proveedoreController extends Controller
     public function create()
     {
         $documentos = Documento::all();
-        return view('proveedore.create',compact('documentos'));
+        return view('proveedore.create', compact('documentos'));
     }
 
     /**
@@ -83,7 +83,7 @@ class proveedoreController extends Controller
     {
         $proveedore->load('persona.documento');
         $documentos = Documento::all();
-        return view('proveedore.edit',compact('proveedore','documentos'));
+        return view('proveedore.edit', compact('proveedore', 'documentos'));
     }
 
     /**
@@ -103,7 +103,12 @@ class proveedoreController extends Controller
             DB::beginTransaction();
 
             Persona::where('id', $proveedore->persona->id)
-                ->update($request);
+                ->update(['razon_social' => $request->razon_social],
+                ['direccion' => $request->direccion],
+                ['documento_id' => $request->documento_id],
+                ['numero_documento' => $request->numero_documento],
+                ['nit' => $request->nit]
+            );
 
             DB::commit();
         } catch (Exception $e) {
