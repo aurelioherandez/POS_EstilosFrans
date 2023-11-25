@@ -316,84 +316,75 @@
             $('#precio_venta').val(dataProducto[2]);
         }
 
-        // Asegúrate de definir estas variables en tu código
-let subtotal = [];
-let sumas = 0;
-let iva = 0;
-let total = 0;
-let impuesto = 0; // Asegúrate de que este es el valor correcto para el impuesto
-let cont = 0;
+        function agregarProducto() {
+            // Obtener valores de los campos
+            let idProducto = $('#producto_id').val();
+            let nameProducto = $('#producto_id option:selected').text();
+            let cantidad = $('#cantidad').val();
+            let precioCompra = $('#precio_compra').val();
+            let precioVenta = $('#precio_venta').val();
+            let descuento = $('#descuento').val(); // Asegúrate de que este es el id correcto para el campo de descuento
 
-function agregarProducto() {
-    // Obtener valores de los campos
-    let idProducto = $('#producto_id').val();
-    let nameProducto = $('#producto_id option:selected').text();
-    let cantidad = $('#cantidad').val();
-    let precioCompra = $('#precio_compra').val();
-    let precioVenta = $('#precio_venta').val();
-    let descuento = $('#descuento').val(); // Asegúrate de que este es el id correcto para el campo de descuento
-
-    if (descuento == '') {
-        descuento = 0;
-    }
-
-    // Validaciones 
-    // 1. Para que los campos no esten vacíos
-    // if (idProducto != '' && cantidad != '' && precioCompra != '' && precioVenta != '') {
-
-        // 2. Para que los valores ingresados sean los correctos
-        if (parseInt(cantidad) > 0 && (cantidad % 1 == 0) && parseFloat(precioCompra) > 0 && parseFloat(precioVenta) > 0) {
-
-            // 3. Para que el precio de compra sea menor que el precio de venta
-            if (parseFloat(precioVenta) > parseFloat(precioCompra)) {
-                // Calcular valores
-                subtotal[cont] = round(cantidad * precioCompra);
-                sumas += subtotal[cont];
-                iva = round(sumas / 100 * impuesto);
-                total = round(sumas + iva);
-
-                // Crear la fila
-                let fila = '<tr id="fila' + cont + '">' +
-                    '<th>' + (cont + 1) + '</th>' +
-                    '<td><input type="hidden" name="arrayidproducto[]" value="' + idProducto + '">' + nameProducto +
-                    '</td>' +
-                    '<td><input type="hidden" name="arraycantidad[]" value="' + cantidad + '">' + cantidad +
-                    '</td>' +
-                    '<td><input type="hidden" name="arraypreciocompra[]" value="' + precioCompra + '">' +
-                    precioCompra + '</td>' +
-                    '<td><input type="hidden" name="arrayprecioventa[]" value="' + precioVenta + '">' +
-                    precioVenta + '</td>' +
-                    '<td>' + subtotal[cont] + '</td>' +
-                    '<td><button class="btn btn-danger" type="button" onClick="eliminarProducto(' + cont +
-                    ')"><i class="fas fa-trash"></i></button></td>' +
-                    '</tr>';
-
-                // Acciones después de añadir la fila
-                $('#tabla_detalle').append(fila);
-                limpiarCampos();
-                cont++;
-                disableButtons();
-
-                // Mostrar los campos calculados
-                $('#sumas').html("$" + sumas.toFixed(2));
-                $('#iva').html("$" + iva.toFixed(2));
-                $('#total').html("$" + total.toFixed(2));
-                $('#impuesto').val(iva.toFixed(2));
-                $('#inputTotal').val(total.toFixed(2));
-            } else {
-                showModal('Precio de compra incorrecto');
+            if (descuento == '') {
+                descuento = 0;
             }
 
-        } else {
-            showModal('Valores incorrectos');
+            // Validaciones 
+            // 1. Para que los campos no esten vacíos
+            // if (idProducto != '' && cantidad != '' && precioCompra != '' && precioVenta != '') {
+
+            // 2. Para que los valores ingresados sean los correctos
+            if (parseInt(cantidad) > 0 && (cantidad % 1 == 0) && parseFloat(precioCompra) > 0 && parseFloat(precioVenta) >
+                0) {
+
+                // 3. Para que el precio de compra sea menor que el precio de venta
+                if (parseFloat(precioVenta) > parseFloat(precioCompra)) {
+                    // Calcular valores
+                    subtotal[cont] = round(cantidad * precioCompra);
+                    sumas += subtotal[cont];
+                    iva = round(sumas / 100 * impuesto);
+                    total = round(sumas + iva);
+
+                    // Crear la fila
+                    let fila = '<tr id="fila' + cont + '">' +
+                        '<th>' + (cont + 1) + '</th>' +
+                        '<td><input type="hidden" name="arrayidproducto[]" value="' + idProducto + '">' + nameProducto +
+                        '</td>' +
+                        '<td><input type="hidden" name="arraycantidad[]" value="' + cantidad + '">' + cantidad +
+                        '</td>' +
+                        '<td><input type="hidden" name="arraypreciocompra[]" value="' + precioCompra + '">' +
+                        precioCompra + '</td>' +
+                        '<td><input type="hidden" name="arrayprecioventa[]" value="' + precioVenta + '">' +
+                        precioVenta + '</td>' +
+                        '<td>' + subtotal[cont] + '</td>' +
+                        '<td><button class="btn btn-danger" type="button" onClick="eliminarProducto(' + cont +
+                        ')"><i class="fas fa-trash"></i></button></td>' +
+                        '</tr>';
+
+                    // Acciones después de añadir la fila
+                    $('#tabla_detalle').append(fila);
+                    limpiarCampos();
+                    cont++;
+                    disableButtons();
+
+                    // Mostrar los campos calculados
+                    $('#sumas').html(sumas);
+                    $('#iva').html(iva);
+                    $('#total').html(total);
+                    $('#impuesto').val(iva);
+                    $('#inputTotal').val(total);
+                } else {
+                    showModal('Precio de compra incorrecto');
+                }
+
+            } else {
+                showModal('Valores incorrectos');
+            }
+
+            // } else {
+            //     showModal('Le faltan campos por llenar');
+            // }
         }
-
-    // } else {
-    //     showModal('Le faltan campos por llenar');
-    // }
-}
-
-
 
         function cancelarCompra() {
             //Eliminar el tbody de la tabla
