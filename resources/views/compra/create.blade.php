@@ -287,12 +287,14 @@
 
     <script>
         $(document).ready(function() {
+            $('#producto_id').change(mostrarValores);
+
             $('#btn_agregar').click(function() {
                 agregarProducto();
             });
 
-            $('#btnCancelarCompra').click(function() {
-                cancelarCompra();
+            $('#btnCancelarVenta').click(function() {
+                cancelarVenta();
             });
 
             disableButtons();
@@ -310,10 +312,16 @@
         //Constantes
         const impuesto = 12;
 
+        function mostrarValores() {
+            let dataProducto = document.getElementById('producto_id').value.split('-');
+            $('#stock').val(dataProducto[1]);
+            $('#precio_venta').val(dataProducto[2]);
+        }
+
         function agregarProducto() {
             //Obtener valores de los campos
             let idProducto = $('#producto_id').val();
-            let nameProducto = ($('#producto_id option:selected').text()).split(' ')[1];
+            let nameProducto = $('#producto_id option:selected').text();
             let cantidad = $('#cantidad').val();
             let precioCompra = $('#precio_compra').val();
             let precioVenta = $('#precio_venta').val();
@@ -325,7 +333,7 @@
 
                 //2. Para que los valores ingresados sean los correctos
                 if (parseInt(cantidad) > 0 && (cantidad % 1 == 0) && parseFloat(precioCompra) > 0 && parseFloat(
-                    precioVenta) > 0) {
+                        precioVenta) > 0) {
 
                     //3. Para que el precio de compra sea menor que el precio de venta
                     if (parseFloat(precioVenta) > parseFloat(precioCompra)) {
