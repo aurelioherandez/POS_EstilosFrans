@@ -17,7 +17,8 @@
                 <div class="card-body">
                     <div class="mb-4">
                         <a href="{{ route('users.create') }}">
-                            <button type="button" class="btn btn-warning">Añadir</button>
+                            <button type="button"
+                                class="bg-amber-500 hover:bg-amber-600 px-3 py-2 rounded-md text-white font-bold">>Añadir</button>
                         </a>
                     </div>
                     <div id="content-table">
@@ -80,13 +81,15 @@
                                                     ¿Seguro que quieres eliminar el usuario?
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
+                                                    <button type="button"
+                                                        class="bg-green-500 hover:bg-green-600 px-3 py-2 rounded-md text-white font-bold">
                                                         data-dismiss="modal">Cerrar</button>
                                                     <form action="{{ route('users.destroy', ['user' => $item->id]) }}"
                                                         method="post">
                                                         @method('DELETE')
                                                         @csrf
-                                                        <button type="submit" class="btn btn-danger">Confirmar</button>
+                                                        <button type="submit"
+                                                            class="bg-red-500 hover:bg-red-600 px-3 py-2 rounded-md text-white font-bold">>Confirmar</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -104,7 +107,7 @@
 @stop
 
 @push('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -120,7 +123,7 @@
 @endpush
 
 @section('js')
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>

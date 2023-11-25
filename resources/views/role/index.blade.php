@@ -17,7 +17,7 @@
                 <div class="card-body">
                     <div class="mb-4">
                         <a href="{{ route('roles.create') }}">
-                            <button type="button" class="btn btn-warning">Añadir nuevo rol</button>
+                            <button type="button" class="bg-amber-500 hover:bg-amber-600 px-3 py-2 rounded-md text-white font-bold">>Añadir nuevo rol</button>
                         </a>
                     </div>
                     <div id="content-table">

@@ -110,12 +110,12 @@
                         </div>
                         <div class="text-center space-x-4">
                             <button type="submit"
-                                class="btn btn-success px-3 py-2 rounded-md text-white font-bold">
+                            class="bg-green-500 hover:bg-green-600 px-3 py-2 rounded-md text-white font-bold">
                                 Guardar
                             </button>
                             <a href="{{ route('users.index') }}">
                                 <button type="button"
-                                    class="btn btn-danger px-3 py-2 rounded-md text-white font-bold">
+                                class="bg-red-500 hover:bg-red-600 px-3 py-2 rounded-md text-white font-bold">
                                     Cancelar
                                 </button>
                             </a>

@@ -102,7 +102,12 @@ class clienteController extends Controller
             DB::beginTransaction();
 
             Persona::where('id', $cliente->persona->id)
-                ->update($request->all());
+                ->update(['razon_social' => $request->razon_social],
+                ['direccion' => $request->direccion],
+                ['documento_id' => $request->documento_id],
+                ['numero_documento' => $request->numero_documento],
+                ['nit' => $request->nit]
+            );
 
             DB::commit();
         } catch (Exception $e) {
