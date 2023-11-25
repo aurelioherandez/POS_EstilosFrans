@@ -328,8 +328,8 @@
 
             //Validaciones 
             //1.Para que los campos no esten vacíos
-            if (nameProducto != '' && nameProducto != undefined && cantidad != '' && precioCompra != '' && precioVenta !=
-                '') {
+            // if (nameProducto != '' && nameProducto != undefined && cantidad != '' && precioCompra != '' && precioVenta !=
+            //     '') {
 
                 //2. Para que los valores ingresados sean los correctos
                 if (parseInt(cantidad) > 0 && (cantidad % 1 == 0) && parseFloat(precioCompra) > 0 && parseFloat(
@@ -379,9 +379,9 @@
                     showModal('Valores incorrectos');
                 }
 
-            } else {
-                showModal('Le faltan campos por llenar');
-            }
+            // } else {
+            //     showModal('Le faltan campos por llenar');
+            // }
         }
 
         function cancelarCompra() {

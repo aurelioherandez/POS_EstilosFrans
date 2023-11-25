@@ -378,59 +378,59 @@
 
             //Validaciones 
             //1.Para que los campos no esten vacíos
-            if (idProducto != '' && cantidad != '') {
+            // if (idProducto != '' && cantidad != '') {
 
-                //2. Para que los valores ingresados sean los correctos
-                if (parseInt(cantidad) > 0 && (cantidad % 1 == 0) && parseFloat(descuento) >= 0) {
+            //2. Para que los valores ingresados sean los correctos
+            if (parseInt(cantidad) > 0 && (cantidad % 1 == 0) && parseFloat(descuento) >= 0) {
 
-                    //3. Para que la cantidad no supere el stock
-                    if (parseInt(cantidad) <= parseInt(stock)) {
-                        //Calcular valores
-                        subtotal[cont] = round(cantidad * precioVenta - descuento);
-                        sumas += subtotal[cont];
-                        iva = round(sumas / 100 * impuesto);
-                        total = round(sumas + iva);
+                //3. Para que la cantidad no supere el stock
+                if (parseInt(cantidad) <= parseInt(stock)) {
+                    //Calcular valores
+                    subtotal[cont] = round(cantidad * precioVenta - descuento);
+                    sumas += subtotal[cont];
+                    iva = round(sumas / 100 * impuesto);
+                    total = round(sumas + iva);
 
-                        //Crear la fila
-                        let fila = '<tr id="fila' + cont + '">' +
-                            '<th>' + (cont + 1) + '</th>' +
-                            '<td><input type="hidden" name="arrayidproducto[]" value="' + idProducto + '">' +
-                            nameProducto +
-                            '</td>' +
-                            '<td><input type="hidden" name="arraycantidad[]" value="' + cantidad + '">' + cantidad +
-                            '</td>' +
-                            '<td><input type="hidden" name="arrayprecioventa[]" value="' + precioVenta + '">' +
-                            precioVenta + '</td>' +
-                            '<td><input type="hidden" name="arraydescuento[]" value="' + descuento + '">' + descuento +
-                            '</td>' +
-                            '<td>' + subtotal[cont] + '</td>' +
-                            '<td><button class="btn btn-danger" type="button" onClick="eliminarProducto(' + cont +
-                            ')"><i class="fas fa-trash"></i></button></td>' +
-                            '</tr>';
+                    //Crear la fila
+                    let fila = '<tr id="fila' + cont + '">' +
+                        '<th>' + (cont + 1) + '</th>' +
+                        '<td><input type="hidden" name="arrayidproducto[]" value="' + idProducto + '">' +
+                        nameProducto +
+                        '</td>' +
+                        '<td><input type="hidden" name="arraycantidad[]" value="' + cantidad + '">' + cantidad +
+                        '</td>' +
+                        '<td><input type="hidden" name="arrayprecioventa[]" value="' + precioVenta + '">' +
+                        precioVenta + '</td>' +
+                        '<td><input type="hidden" name="arraydescuento[]" value="' + descuento + '">' + descuento +
+                        '</td>' +
+                        '<td>' + subtotal[cont] + '</td>' +
+                        '<td><button class="btn btn-danger" type="button" onClick="eliminarProducto(' + cont +
+                        ')"><i class="fas fa-trash"></i></button></td>' +
+                        '</tr>';
 
-                        //Acciones después de añadir la fila
-                        $('#tabla_detalle').append(fila);
-                        limpiarCampos();
-                        cont++;
-                        disableButtons();
+                    //Acciones después de añadir la fila
+                    $('#tabla_detalle').append(fila);
+                    limpiarCampos();
+                    cont++;
+                    disableButtons();
 
-                        //Mostrar los campos calculados
-                        $('#sumas').html(sumas);
-                        $('#iva').html(iva);
-                        $('#total').html(total);
-                        $('#impuesto').val(iva);
-                        $('#inputTotal').val(total);
-                    } else {
-                        showModal('Cantidad incorrecta');
-                    }
-
+                    //Mostrar los campos calculados
+                    $('#sumas').html(sumas);
+                    $('#iva').html(iva);
+                    $('#total').html(total);
+                    $('#impuesto').val(iva);
+                    $('#inputTotal').val(total);
                 } else {
-                    showModal('Le faltan campos por llenar');
+                    showModal('Cantidad incorrecta');
                 }
 
+            // } else {
+            //     showModal('Le faltan campos por llenar');
+            // }
             }
 
         }
+
 
         function eliminarProducto(indice) {
             //Calcular valores
