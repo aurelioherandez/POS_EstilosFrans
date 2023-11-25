@@ -77,7 +77,7 @@
 
                                                 <!-----botón para agregar--->
                                                 <div class="col-12 py-2 text-end">
-                                                    <button id="btn_agregar" class="btn btn-warning"
+                                                    <button id="btn_agregar" class="bg-amber-500 hover:bg-amber-600 px-3 py-2 rounded-md text-white font-bold">
                                                         type="button">Agregar</button>
                                                 </div>
 
@@ -132,7 +132,7 @@
 
                                                 <!--Boton para cancelar venta-->
                                                 <div class="col-12">
-                                                    <button id="cancelar" type="button" class="btn btn-danger"
+                                                    <button id="cancelar" type="button" class="bg-red-500 hover:bg-red-600 px-3 py-2 rounded-md text-white font-bold">
                                                         data-toggle="modal" data-target="#exampleModal">
                                                         Cancelar venta
                                                     </button>

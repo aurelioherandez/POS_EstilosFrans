@@ -57,8 +57,8 @@
                                         <label for="marca_id" class="form-label">Marca:</label>
                                         <select data-size="4" title="Seleccione una marca" data-live-search="true"
                                             name="marca_id" id="marca_id" class="form-control">
+                                            <option value=""></option>
                                             @foreach ($marcas as $item)
-                                                <option value=""></option>
                                                 <option value="{{ $item->id }}"
                                                     {{ old('marca_id') == $item->id ? 'selected' : '' }}>
                                                     {{ $item->nombre }}
@@ -73,8 +73,8 @@
                                         <label for="presentacione_id" class="form-label">Presentación:</label>
                                         <select data-size="4" title="Seleccione una presentación" data-live-search="true"
                                             name="presentacione_id" id="presentacione_id" class="form-control">
+                                            <option value=""></option>
                                             @foreach ($presentaciones as $item)
-                                                <option value=""></option>
                                                 <option value="{{ $item->id }}"
                                                     {{ old('presentacione_id') == $item->id ? 'selected' : '' }}>
                                                     {{ $item->nombre }}</option>
@@ -92,9 +92,9 @@
                                     <div class="col-md-6">
                                         <label for="categorias" class="form-label">Categorías:</label>
                                         <select data-size="4" title="Seleccione las categorías" data-live-search="true"
-                                            name="categorias[]" id="categorias" class="form-control" multiple>
+                                            name="categorias[]" id="categorias" class="form-control">
+                                            <option value=""></option>
                                             @foreach ($categorias as $item)
-                                                <option value=""></option>
                                                 <option value="{{ $item->id }}"
                                                     {{ in_array($item->id, old('categorias', [])) ? 'selected' : '' }}>
                                                     {{ $item->nombre }}</option>
@@ -108,8 +108,8 @@
                                         <label for="laboratorio_id" class="form-label">Talla:</label>
                                         <select data-size="4" title="Seleccione una talla" data-live-search="true"
                                             name="laboratorio_id" id="laboratorio_id" class="form-control">
+                                            <option value=""></option>
                                             @foreach ($laboratorios as $item)
-                                                <option value=""></option>
                                                 <option value="{{ $item->id }}"
                                                     {{ old('laboratorio_id') == $item->id ? 'selected' : '' }}>
                                                     {{ $item->nombre }}</option>

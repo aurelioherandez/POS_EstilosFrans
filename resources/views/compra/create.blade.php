@@ -64,7 +64,7 @@
                         
                                                 <!-----botón para agregar--->
                                                 <div class="col-12 mb-4 mt-2 text-end">
-                                                    <button id="btn_agregar" class="btn btn-warning" type="button">Agregar</button>
+                                                    <button id="btn_agregar" class="bg-amber-500 hover:bg-amber-600 px-3 py-2 rounded-md text-white font-bold"> type="button">Agregar</button>
                                                 </div>
                         
                                                 <!-----Tabla para el detalle de la compra--->
@@ -116,7 +116,7 @@
                         
                                                 <!--Boton para cancelar compra-->
                                                 <div class="col-12 mt-2">
-                                                    <button id="cancelar" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                                    <button id="cancelar" type="button" class="bg-red-500 hover:bg-red-600 px-3 py-2 rounded-md text-white font-bold"> data-toggle="modal" data-target="#exampleModal">
                                                         Cancelar compra
                                                     </button>
                                                 </div>
