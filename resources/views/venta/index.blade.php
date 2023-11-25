@@ -60,6 +60,11 @@
                                         </td>
                                         <td>
                                             <div class="text-center">
+                                                <a href="{{ route('facturas.show', ['factura' => $item]) }}"
+                                                    target="_blank">
+                                                    <button type="submit" class="bg-warning py-2 px-3 rounded-md"><span
+                                                            class="fas fa-fw fa-receipt text-white"></span></button>
+                                                </a>
                                                 <a href="{{ route('ventas.show', ['venta' => $item]) }}">
                                                     <button type="submit" class="bg-success py-2 px-3 rounded-md">
                                                         ver

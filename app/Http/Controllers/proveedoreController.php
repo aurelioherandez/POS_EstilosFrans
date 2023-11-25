@@ -103,7 +103,7 @@ class proveedoreController extends Controller
             DB::beginTransaction();
 
             Persona::where('id', $proveedore->persona->id)
-                ->update($request->all());
+                ->update($request);
 
             DB::commit();
         } catch (Exception $e) {
